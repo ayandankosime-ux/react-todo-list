@@ -1,16 +1,19 @@
 import { useState } from 'react'
 import './App.css'
 
-function TodoInput({ inputText, setInputText, todos }) {
+function TodoInput({ todos }) {
+  const [ inputText, setInputText ] = useState('');
   
 
   function saveInputText(event) {
     setInputText(event.target.value);
-    console.log(inputText);
   }
   
   function addTodo() {
-    todos.push(<Todo todoName={inputText}/>);
+    const title = inputText;
+    const id = crypto.randomUUID();
+
+    todos.push( {id, title} );
     console.log(todos)
   }
 
@@ -25,9 +28,9 @@ function TodoInput({ inputText, setInputText, todos }) {
 }
 
 
-function Todo({todoName}) {
+function Todo({todoName, id }) {
   return (
-    <div className="note">
+    <div key={id} className="note">
       <input type='checkbox' />
       <p>{todoName}</p>
       <button className="btn-delete">X</button>
@@ -36,7 +39,6 @@ function Todo({todoName}) {
 }
 
 function App() {
-  const [ inputText, setInputText ] = useState('');
   const [ todos, setTodos ] = useState([{
     title: 'Wash the dishes',
     id: '1'
@@ -49,18 +51,20 @@ function App() {
   }]);
 
   const todosComponent = todos.map((todo) => {
-    return (<Todo todoName={todo.title}/>)
+    return (<Todo todoName={todo.title} id={todo.id}/>)
   })
-
-  console.log(todos);
-
   
   return (
     <>
       <div className="app-container">
         <div className="notes-container">
           <h1>Todo List</h1>
-          <TodoInput inputText={inputText} setInputText={setInputText} todos={todos}/>
+
+          <TodoInput
+            todos={todos}
+            setTodos={setTodos}
+          />
+
           <div className="notes-box">
             {todosComponent}
           </div>
