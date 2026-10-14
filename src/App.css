@@ -1,0 +1,91 @@
+.app-container {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notes-container {
+  background-color: rgb(230, 230, 230);
+  border-radius: 12px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.add-todo-container {
+  display: grid;
+  grid-template-columns: 1fr 110px;
+  column-gap: 6px;
+  margin-bottom: 10px;
+}
+
+.todo-input {
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid gray;
+  padding: 0px 5px;
+}
+
+.btn-add-todo {
+  width: 100%;
+  padding: 13px 0px;
+  margin-bottom: 5px;
+  background-color: rgb(50, 214, 50);
+  font-weight: bold;
+  color: white;
+  border-radius: 12px;
+  border: none;
+  transition: background-color 0.15s opacity 0.15s;
+  cursor: pointer;
+}
+
+.btn-add-todo:hover {
+  background-color: rgb(27, 165, 27);
+}
+
+.btn-add-todo:active {
+  opacity: 0.3;
+}
+
+.note {
+  width: 400px;
+  background-color: white;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 30px 1fr 50px;
+  padding: 5px;
+  column-gap: 5px;
+  margin-bottom: 5px;
+} 
+
+
+.btn-delete {
+  height: 30px;
+  margin: 10px;
+  background-color: red
+  ;
+  border-radius: 50px;
+  border: none;
+  color: white;
+}
+
+.btn-delete:hover {
+  opacity: 0.7;
+}
+
+.btn-delete:active {
+  background-color: rgb(185, 1, 1)
+  ;
+}
+
+span {
+  text-decoration: line-through;
+  color: gray;
+}
+
