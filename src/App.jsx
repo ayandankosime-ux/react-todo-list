@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import './App.css'
 
-function TodoInput({ todos }) {
+function TodoInput({ todos, setTodos }) {
   const [ inputText, setInputText ] = useState('');
+
+  
   
 
   function saveInputText(event) {
@@ -10,11 +12,15 @@ function TodoInput({ todos }) {
   }
   
   function addTodo() {
-    const title = inputText;
-    const id = crypto.randomUUID();
+    if (!inputText.trim()) return;
 
-    todos.push( {id, title} );
-    console.log(todos)
+    const newTodo = {
+      title: inputText,
+      id: crypto.randomUUID()
+    };
+
+    setTodos([...todos, newTodo]);
+    setInputText('');
   }
 
   return (
@@ -28,9 +34,9 @@ function TodoInput({ todos }) {
 }
 
 
-function Todo({todoName, id }) {
+function Todo({todoName}) {
   return (
-    <div key={id} className="note">
+    <div className="note">
       <input type='checkbox' />
       <p>{todoName}</p>
       <button className="btn-delete">X</button>
@@ -51,7 +57,7 @@ function App() {
   }]);
 
   const todosComponent = todos.map((todo) => {
-    return (<Todo todoName={todo.title} id={todo.id}/>)
+    return (<Todo todoName={todo.title} key={todo.id}/>)
   })
   
   return (
